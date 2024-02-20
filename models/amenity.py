@@ -1,26 +1,15 @@
 #!/usr/bin/python3
-"""
-0x00. AirBnB clone - The console
-"""
+"""Tthe amenity class data storage"""
 from models.base_model import BaseModel, Base
-from sqlalchemy import Column, String, ForeignKey
+from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
-from models.place import place_amenity
-import os
-
-STORAGE = os.getenv("HBNB_TYPE_STORAGE")
 
 
 class Amenity(BaseModel, Base):
-    """Permit to add the amenities for places"""
+    """This is the class for Amenity
+    Attributes:
+        name: input name
+    """
 
     __tablename__ = "amenities"
-    if STORAGE == "db":
-        name = Column(String(128), nullable=False)
-        place_amenities = relationship(
-            "Place", secondary=place_amenity,
-            backref='amenities',
-            viewonly=False
-        )
-    else:
-        name = ""
+    name = Column(String(128), nullable=False)
